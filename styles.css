@@ -153,15 +153,17 @@ a{text-decoration:none;color:inherit}
 }
 .detail-card:last-child{border-left:0}
 .detail-icon{
-  width:60px;
-  height:60px;
-  border-radius:7px;
-  background:#ead4b1;
+  width:72px;
+  height:72px;
   margin:0 auto 10px;
   display:grid;
   place-items:center;
-  font-size:27px;
-  box-shadow:0 7px 14px rgba(0,0,0,.10);
+}
+.detail-icon img{
+  width:72px;
+  height:72px;
+  object-fit:contain;
+  display:block;
 }
 .detail-card h3{
   font-size:19px;
