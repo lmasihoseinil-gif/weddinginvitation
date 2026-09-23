@@ -1,5 +1,32 @@
-// Requested reference: 1 Mehr 1405 -> wedding: 30 Mehr 1405 = exactly 29 days.
-// The countdown begins at 29 days when the page is opened and then ticks in real time.
-const target=Date.now()+29*24*60*60*1000;
-const fa=n=>String(n).padStart(2,"0").replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]);
-function tick(){let x=Math.max(0,target-Date.now()),d=Math.floor(x/86400000);x%=86400000;let h=Math.floor(x/3600000);x%=3600000;let m=Math.floor(x/60000);x%=60000;let s=Math.floor(x/1000);days.textContent=fa(d);hours.textContent=fa(h);minutes.textContent=fa(m);seconds.textContent=fa(s)}tick();setInterval(tick,1000);
+
+// Fixed wedding moment: 30 Mehr 1405, 18:00 Tehran time.
+// 30 Mehr 1405 corresponds to 22 October 2026.
+const target = new Date("2026-10-22T18:00:00+03:30").getTime();
+
+const fa = (n) =>
+  String(n)
+    .padStart(2, "0")
+    .replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[d]);
+
+function updateCountdown() {
+  let diff = Math.max(0, target - Date.now());
+
+  const days = Math.floor(diff / 86400000);
+  diff %= 86400000;
+
+  const hours = Math.floor(diff / 3600000);
+  diff %= 3600000;
+
+  const minutes = Math.floor(diff / 60000);
+  diff %= 60000;
+
+  const seconds = Math.floor(diff / 1000);
+
+  document.getElementById("days").textContent = fa(days);
+  document.getElementById("hours").textContent = fa(hours);
+  document.getElementById("minutes").textContent = fa(minutes);
+  document.getElementById("seconds").textContent = fa(seconds);
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
